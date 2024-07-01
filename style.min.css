@@ -2,6 +2,8 @@
   --main-background-color: #10161f;
   --btn-battery-gradient-color: linear-gradient(90deg, #029fe3 16.67%, #03e579 100%);
   --shadow-btn-battery: 0px 4px 36px 0px #02bdb54d;
+  --btn-battery-hover-color: linear-gradient(90deg, #029fe3 109.52%, #03e579 248.8%);
+  --shadow-btn-battery-hover: 0px 4px 36px 0px #029fe247;
   --battery-charge-color: linear-gradient(150.21deg, #1ac9ff -1.22%, #0098ea 100.43%);
   --text-primary-color: #ffffff;
   --text-secondary-color: #8994a3;
@@ -107,6 +109,10 @@ body {
 
 section {
   padding: 32px 0;
+}
+
+section:last-of-type {
+  padding-bottom: 64px;
 }
 
 a {
@@ -238,6 +244,7 @@ h3.title {
 }
 
 .btn-battery {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -251,6 +258,29 @@ h3.title {
   font-size: 24px;
   line-height: 29.26px;
   box-shadow: var(--shadow-btn-battery);
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.btn-battery span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-battery::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--btn-battery-hover-color);
+  content: "";
+  transition: all 0.2s ease;
+  opacity: 0;
+}
+
+.btn-battery:hover::after {
+  opacity: 1;
 }
 
 .blocks-slider {
@@ -456,6 +486,10 @@ h3.title {
   font-size: 16px;
   font-weight: 600;
   line-height: 1;
+}
+
+.btn span {
+  display: contents;
 }
 
 .btn_white {
@@ -776,6 +810,7 @@ button.btn {
 .burger {
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 56px;
 }
 
@@ -933,7 +968,7 @@ button.btn {
   }
 
   .blocks-grid_use .block:first-child .block__img img {
-    top: 34px;
+    bottom: 0;
     position: absolute;
     left: 12px;
     width: 100%;
@@ -1027,6 +1062,12 @@ button.btn {
   }
 }
 
+@media (min-width: 991px) {
+  .blocks-grid_use .block:first-child .block__img {
+    margin-bottom: -34px;
+  }
+}
+
 @media (min-width: 998px) {
   :root {
     --block-radius: 44px;
@@ -1088,6 +1129,10 @@ button.btn {
     --h3-lh: 36px;
     --text-fs: 20px;
     --text-lh: 28px;
+  }
+
+  section:last-of-type {
+    padding-bottom: 128px;
   }
 
   .dynamic_snippet {
